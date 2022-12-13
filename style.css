@@ -1,21 +1,5 @@
-.col {
-    margin-top: 20px;
-    height: 220px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 1px solid black;
+.row {
+    border: 1px black solid;
 }
-.col :hover{
-    box-shadow: rgb(95, 94, 91) 1px 0 10px;
-}
-
-
-h1{
-    text-align: center;
-}
-
-  
-
-
 
 
