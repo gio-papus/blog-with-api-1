@@ -1,0 +1,11 @@
+.col{
+    margin-top: 20px;
+    border: 1px solid black;
+   height: 200px;
+   margin: 10px;
+   
+}
+.btn-group{
+  float: inline-end;
+
+}
