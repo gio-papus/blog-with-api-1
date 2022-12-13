@@ -242,12 +242,3 @@ function createCard (item) {
     btnGroup.appendChild(deleteBtn);
 
 }
-
-users.forEach(comment => addMailUser(comment))
-
-function addMailUser(comment){
-    user.textContent = "User: " + com.user;
-    mail.textContent = comment.email;
-    user
-
-}
