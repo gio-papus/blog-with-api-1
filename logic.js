@@ -137,9 +137,9 @@ Promise.all([
 
 function createCard (item) {
 
-    if (item.userId == 1){
+    // if (item.userId == 1){
 
-    }
+    // }
 
     const divCol = document.createElement("div");
     divCol.classList = "col";
