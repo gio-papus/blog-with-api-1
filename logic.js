@@ -18,6 +18,8 @@ Promise.all([
 });
 
 
+
+
 // fetch(urlPosts)
 //     .then(response => response.json())
 //     .then(json => json.forEach(post => createCard(post)))
