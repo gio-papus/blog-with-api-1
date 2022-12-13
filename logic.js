@@ -7,15 +7,30 @@ const cardSection = document.querySelector("#cardSection");
 let comments = [];
 let users = [];
 
+// Promise.all([
+//     fetch(urlPosts).then(response => response.json()),
+//     fetch(urlComments).then(response => response.json()),
+//     fetch(urlUsers).then(response => response.json()),
+// ]).then(json => {
+//     json[0].forEach(item => createCard(item));
+//     json[1].forEach(comment => comments.push(comment));
+//     json[2].forEach(user => users.push(user));
+// });
+
+
 Promise.all([
-    fetch(urlPosts).then(response => response.json()),
-    fetch(urlComments).then(response => response.json()),
-    fetch(urlUsers).then(response => response.json()),
-]).then(json => {
-    json[0].forEach(item => createCard(item));
-    json[1].forEach(comment => comments.push(comment));
-    json[2].forEach(user => users.push(user));
-});
+    fetch(urlPosts),
+    fetch(urlComments),
+    fetch(urlUsers),
+]).then(function (responses) {
+    return Promise.all(responses.map(function (response) {
+        return response.json();
+    }))
+}).then(function (data) {
+    console.log(data);
+    data.forEach(item => createCard(data[0], data[1], data[2]))
+    ;
+})
 
 
 
@@ -135,11 +150,10 @@ Promise.all([
 
 // }
 
-function createCard (item) {
+function createCard (data) {
 
-    if (item.userId == 1){
+    let dataID = data[0].userId;
 
-    }
 
     const divCol = document.createElement("div");
     divCol.classList = "col";
@@ -158,7 +172,7 @@ function createCard (item) {
 
     const p = document.createElement("p");
     p.classList = "card-text";
-    p.textContent = item.title;
+    p.textContent = data[0].title;
     cardBody.appendChild(p);
     const dFlex = document.createElement("div");
     dFlex.classList = "d-flex justify-content-between align-items-center";
@@ -172,12 +186,12 @@ function createCard (item) {
     button.classList = "btn btn-primary";
     button.setAttribute("type", "button");
     button.setAttribute("data-bs-toggle", "modal");
-    button.setAttribute("data-bs-target", "#modal" + item.id);
+    button.setAttribute("data-bs-target", "#modal" + data[0].id);
     button.textContent = "Load Info";
     btnGroup.appendChild(button);
     const modalFade = document.createElement("div");
     modalFade.classList = "modal fade";
-    modalFade.setAttribute("id", "modal" + item.id);
+    modalFade.setAttribute("id", "modal" + data[0].id);
     modalFade.setAttribute("tabindex", "-1");
     modalFade.setAttribute("aria-labelledby", "modalLabel");
     modalFade.setAttribute("aria-hidden", "true");
@@ -196,7 +210,7 @@ function createCard (item) {
     modalContent.appendChild(modalHeader);
     const modalBody = document.createElement("div");
     modalBody.classList = "modal-body";
-    modalBody.textContent = item.body;
+    modalBody.textContent = data[0].body;
     modalContent.appendChild(modalBody);
     const modalFooter = document.createElement("div");
     modalFooter.classList = "modal-footer";
@@ -208,13 +222,13 @@ function createCard (item) {
 
     const mail = document.createElement("div");
     mail.classList ="modal-body";
-    mail.textContent = "Mail: "
+    mail.textContent = "Mail: "+ data[3].id;
     modalBody.appendChild(mail);
 
     const h5 = document.createElement("h5");
     h5.classList = "modal-title";
     h5.setAttribute("id", "modalLabel");
-    h5.textContent = item.title;
+    h5.textContent = data[0].title;
     modalHeader.appendChild(h5);
     const btnModal = document.createElement("button");
     btnModal.classList = "btn-close";
@@ -243,11 +257,3 @@ function createCard (item) {
 
 }
 
-users.forEach(comment => addMailUser(comment))
-
-function addMailUser(comment){
-    user.textContent = "User: " + com.user;
-    mail.textContent = comment.email;
-    user
-
-}
