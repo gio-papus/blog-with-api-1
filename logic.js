@@ -10,6 +10,7 @@ fetch(urlPosts)
 
 function createCard (post) {
     
+    let id = post.id;
     let userId = post.userId;
            
     const divCol = document.createElement("div");
@@ -21,7 +22,11 @@ function createCard (post) {
     divCol.appendChild(card);
 
     const img = document.createElement("img");
-    img.src = "test1.jpg";
+    if (id<11) {
+        img.src = "./images/kimetsu" + id + ".jpg";
+    } else {
+        img.src = "./images/kimetsu10.jpg";
+    }
     card.appendChild(img);
     const cardBody = document.createElement("div");
     cardBody.classList = "card-body";
@@ -132,8 +137,6 @@ function createCard (post) {
     collapse.classList = "collapse";
     collapse.setAttribute("id", "comments");
     modalBody.appendChild(collapse);
-
-    let id = post.id;
 
     fetch(urlComments)
         .then(respone => respone.json())
