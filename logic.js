@@ -137,9 +137,30 @@ function createCard (post) {
     collapse.setAttribute("id", "comments");
     modalBody.appendChild(collapse);
 
-    const cardComment = document.createElement("div");
-    cardComment.classList = "card", "card-body";
-    collapse.appendChild(cardComment);
+    let id = post.id;
+
+    fetch(urlComments)
+        .then(respone => respone.json())
+        .then(json => json.forEach(comment => 
+            createComment(comment, id)));
+
+    function createComment(comment, id){
+        if (id == comment.postId){
+            const cardComment = document.createElement("div");
+            cardComment.classList = "card card-body";
+            collapse.appendChild(cardComment);
+            const h4Comment = document.createElement("h4");
+            h4Comment.classList = "title";
+            const pCommentBody = document.createElement("p");
+            const pCommentMail = document.createElement("p");
+            h4Comment.textContent = comment.name;
+            pCommentBody.textContent = comment.body;
+            pCommentMail.textContent = comment.email;
+            cardComment.appendChild(h4Comment);
+            cardComment.appendChild(pCommentBody);
+            cardComment.appendChild(pCommentMail);
+        }     
+    }
 
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
@@ -158,7 +179,6 @@ function createCard (post) {
         }).catch(error => {
             console.error(error)
     })}
-
 
 }
 
