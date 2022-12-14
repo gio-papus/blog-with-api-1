@@ -8,10 +8,6 @@ fetch(urlPosts)
     .then(response => response.json())
     .then(json => json.forEach(post => createCard(post)))
 
-// fetch(urlPosts)
-//     .then(response => response.json())
-//     .then(json => json.forEach(item => console.log(item)))
-
 function createCard (post) {
     
     let userId = post.userId;
