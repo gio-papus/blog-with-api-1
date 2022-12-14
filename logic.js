@@ -102,6 +102,7 @@ function createCard (post) {
     btnFooter2.textContent = "Save Changes";
     modalFooter.appendChild(btnFooter2);
 
+
     fetch(urlUsers)
         .then(response => response.json())
         .then(json => json.forEach(user => 
@@ -121,6 +122,24 @@ function createCard (post) {
             mail.textContent = "Mail: " + user.email;
         }
     }
+
+    const btnCollapse = document.createElement("button");
+    btnCollapse.classList = "btn btn-dark";
+    btnCollapse.setAttribute("type", "button");
+    btnCollapse.setAttribute("data-bs-toggle", "collapse");
+    btnCollapse.setAttribute("data-bs-target", "#comments");
+    btnCollapse.setAttribute("aria-expanded", "false");
+    btnCollapse.textContent = "Load Comments";
+    modalBody.appendChild(btnCollapse);
+
+    const collapse = document.createElement("div");
+    collapse.classList = "collapse";
+    collapse.setAttribute("id", "comments");
+    modalBody.appendChild(collapse);
+
+    const cardComment = document.createElement("div");
+    cardComment.classList = "card", "card-body";
+    collapse.appendChild(cardComment);
 
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
