@@ -80,7 +80,6 @@ function createCard (post) {
     modalFooter.classList = "modal-footer";
     modalContent.appendChild(modalFooter);
 
-
     const h5 = document.createElement("h2");
     h5.classList = "modal-title";
     h5.setAttribute("id", "modalLabel");
@@ -104,13 +103,7 @@ function createCard (post) {
     btnFooter2.setAttribute("type", "button");
     btnFooter2.textContent = "Save Changes";
     modalFooter.appendChild(btnFooter2);
-
-
-    fetch(urlUsers)
-        .then(response => response.json())
-        .then(json => json.forEach(user => 
-            getMailUser(userId, user)));
-                        
+    
     const username = document.createElement("div");
     username.classList ="modal-body";
     modalBody.appendChild(username);
@@ -118,6 +111,11 @@ function createCard (post) {
     const mail = document.createElement("div");
     mail.classList ="modal-body";
     modalBody.appendChild(mail)
+    
+    fetch(urlUsers)
+        .then(response => response.json())
+        .then(json => json.forEach(user => 
+            getMailUser(userId, user)));
     
     function getMailUser (userId, user) {
         if (user.id == userId){
@@ -171,9 +169,7 @@ function createCard (post) {
     deleteBtn.textContent = "Delete";
     btnGroup.appendChild(deleteBtn);
 
-
     deleteBtn.addEventListener("click",removePost)
-
     
     function removePost (){
 
