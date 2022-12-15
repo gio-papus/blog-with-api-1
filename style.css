@@ -1,4 +1,7 @@
+
 body {
+    min-height: 100vh;
+    background: #222;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -20,3 +23,130 @@ p {
 .navbar {
     user-select: none;
 }
+
+.fall {
+    animation: fallAway forwards 1s ease-out 1;
+}
+
+@keyframes fallAway {
+    0% {
+        transform: rotateZ(0deg);
+        top: 0;
+        opacity: 1;
+      }
+      25% {
+        transform: rotateZ(-15deg);
+      }
+      100% {
+        top: 300px;
+        transform: rotateZ(-5deg);
+        opacity: 0;
+    }
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 9999;
+  background: #222;
+}
+
+.dot {
+    height: 300px;
+  width: 300px;
+  margin-top: 100vh;
+  background-color: rgba(39, 39, 39, 0.846);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+}
+
+.loader {
+    box-sizing: border-box;
+    position: fixed;
+    margin-top: 100vh;
+    width: 150px;
+    height: 150px;
+    animation: animate 24s steps(12) infinite;
+  }
+  
+  @keyframes animate {
+    0%
+    {
+      transform: rotate(0deg);
+    }
+    100%
+    {
+      transform: rotate(360deg);
+    }
+  }
+
+  
+  h3 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.98);
+    text-transform: uppercase;
+  }
+  
+  h3 b {
+    color: rgba(187, 182, 182, 0.963);
+    text-shadow: 0 0 10px #fffb,
+    0 0 20px #fffb,
+    0 0 30px #fffb,
+    0 0 40px #fffb,
+    0 0 50px #fffb;
+  }
+  
+  .loader span {
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(30deg * var(--i)));
+  }
+  
+  
+  .loader span::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.598);
+  }
+  
+  .loader span:nth-child(3n + 3):before {
+    background: #fffb;
+    box-shadow: 0 0 10px #fffb,
+    0 0 20px #fffb,
+    0 0 30px #fffb,
+    0 0 40px #fffb,
+    0 0 50px #fffb;
+    animation: animateSquare 2s linear infinite;
+    transform-origin: 75px;
+  }
+  
+  @keyframes animateSquare {
+  
+    0%, 25%
+    {
+      transform: rotate(0deg);
+    }
+    75%, 90%, 100%
+    {
+      transform: rotate(180deg);
+    }
+  
+  }
+
+  .hidden {
+    z-index: -99999;
+  }

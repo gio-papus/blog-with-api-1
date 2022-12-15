@@ -3,6 +3,7 @@ const urlComments = "http://localhost:3000/comments"
 const urlUsers = "http://localhost:3000/users"
 
 const cardSection = document.querySelector("#cardSection");
+const showDelete = document.querySelector(".box");
 
 fetch(urlPosts)
     .then(response => response.json())
@@ -15,6 +16,7 @@ function createCard (post) {
            
     const divCol = document.createElement("div");
     divCol.classList = "col";
+    divCol.setAttribute("id", "post" + id);
     cardSection.appendChild(divCol);
 
     const card = document.createElement("div");
@@ -169,18 +171,27 @@ function createCard (post) {
     deleteBtn.textContent = "Delete";
     btnGroup.appendChild(deleteBtn);
 
+
     deleteBtn.addEventListener("click",removePost)
 
-     function removePost(){
-        console.log("http://localhost:3000/posts/" + post.id)
-        fetch("http://localhost:3000/posts/" + post.id, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log("removed");
-        }).catch(error => {
-            console.error(error)
-    })}
+    
+    function removePost (){
 
+        showDelete.classList.toggle("hidden");
+
+        setTimeout(() => {
+
+            showDelete.classList.toggle("hidden");
+        
+            let postAddFall = document.querySelector("#post" + id);
+            postAddFall.classList = "col fall"; 
+
+            setTimeout(() => {
+                fetch("http://localhost:3000/posts/" + post.id, {
+                    method: 'DELETE'
+                })            
+            }, 1000); 
+        }, 5000);
+
+    }
 }
-
-
