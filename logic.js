@@ -149,8 +149,6 @@ function createCard (post) {
     editModalFooter.classList = "modal-footer";
     editModalContent.appendChild(editModalFooter);
 
-
-
     const btnFooter2 = document.createElement("button");
     btnFooter2.classList = "btn btn-primary";
     btnFooter2.setAttribute("type", "button");
@@ -243,4 +241,25 @@ function createCard (post) {
         }, 5000);
 
     }
+
+    btnFooter2.addEventListener("click", editPost);
+
+    function editPost(){
+
+        fetch("http://localhost:3000/posts/" + post.id, {
+            method: 'PUT',
+            body: JSON.stringify({
+                userId: userId,
+                id: id,
+                title: editH2.value,
+                body: editModalBody.value,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => location.reload())
+    }
+
 }
