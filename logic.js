@@ -32,12 +32,12 @@ function createCard (post) {
     cardBody.classList = "card-body";
     card.appendChild(cardBody);
 
-    const p = document.createElement("p");
+    const p = document.createElement("h4");
     p.classList = "card-text";
     p.textContent = post.title;
     cardBody.appendChild(p);
     const dFlex = document.createElement("div");
-    dFlex.classList = "d-flex justify-content-between align-items-center";
+    dFlex.classList = "d-flex justify-content-md-end align-items-center ml-3";
     cardBody.appendChild(dFlex);
 
     const btnGroup = document.createElement("div");
@@ -79,7 +79,7 @@ function createCard (post) {
     modalContent.appendChild(modalFooter);
 
 
-    const h5 = document.createElement("h5");
+    const h5 = document.createElement("h2");
     h5.classList = "modal-title";
     h5.setAttribute("id", "modalLabel");
     h5.textContent = post.title;
@@ -119,8 +119,8 @@ function createCard (post) {
     
     function getMailUser (userId, user) {
         if (user.id == userId){
-            username.textContent = "Username: " + user.username;
-            mail.textContent = "Mail: " + user.email;
+            username.innerHTML = "<b><em> Username </em></b>: " + user.username;
+            mail.innerHTML = "<b><em> Mail </em></b>: " + user.email;
         }
     }
 
@@ -148,10 +148,12 @@ function createCard (post) {
             const cardComment = document.createElement("div");
             cardComment.classList = "card card-body";
             collapse.appendChild(cardComment);
-            const h4Comment = document.createElement("h4");
+            const h4Comment = document.createElement("h5");
             h4Comment.classList = "title";
             const pCommentBody = document.createElement("p");
-            const pCommentMail = document.createElement("p");
+            pCommentBody.classList = "pComment";
+            const pCommentMail = document.createElement("em");
+            pCommentMail.classList = "pMail";
             h4Comment.textContent = comment.name;
             pCommentBody.textContent = comment.body;
             pCommentMail.textContent = comment.email;

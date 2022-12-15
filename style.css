@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 p {
     height: 50px;
 }
@@ -5,7 +9,14 @@ p {
     margin-top: 20px;
 }
 
-.album {
-    width: 100%;
-    background-image: url("kimetsu.jpg");
+.pComment {
+    margin-top: 15px;
+}
+
+.pMail {
+    margin-top: 15px;
+}
+
+.navbar {
+    user-select: none;
 }
