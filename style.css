@@ -72,7 +72,7 @@ p {
     animation: animate 24s steps(12) infinite;
   }
   
-  @keyframes animate {
+@keyframes animate {
     0%
     {
       transform: rotate(0deg);
@@ -81,10 +81,10 @@ p {
     {
       transform: rotate(360deg);
     }
-  }
+}
 
   
-  h3 {
+h3 {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -93,24 +93,24 @@ p {
     font-weight: 300;
     color: rgba(255, 255, 255, 0.98);
     text-transform: uppercase;
-  }
+}
   
-  h3 b {
+h3 b {
     color: rgba(187, 182, 182, 0.963);
     text-shadow: 0 0 10px #fffb,
     0 0 20px #fffb,
     0 0 30px #fffb,
     0 0 40px #fffb,
     0 0 50px #fffb;
-  }
+}
   
-  .loader span {
+.loader span {
     position: absolute;
     justify-content: center;
     width: 100%;
     height: 100%;
     transform: rotate(calc(30deg * var(--i)));
-  }
+}
   
   
   .loader span::before {
@@ -121,9 +121,9 @@ p {
     width: 20px;
     height: 20px;
     background: rgba(255, 255, 255, 0.598);
-  }
+}
   
-  .loader span:nth-child(3n + 3):before {
+.loader span:nth-child(3n + 3):before {
     background: #fffb;
     box-shadow: 0 0 10px #fffb,
     0 0 20px #fffb,
@@ -132,9 +132,9 @@ p {
     0 0 50px #fffb;
     animation: animateSquare 2s linear infinite;
     transform-origin: 75px;
-  }
+}
   
-  @keyframes animateSquare {
+@keyframes animateSquare {
   
     0%, 25%
     {
@@ -145,8 +145,8 @@ p {
       transform: rotate(180deg);
     }
   
-  }
+}
 
-  .hidden {
+.hidden {
     z-index: -99999;
-  }
+}
