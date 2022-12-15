@@ -8,8 +8,14 @@ body {
 p {
     height: 50px;
 }
+
+.col{
+  border-radius: 5px;
+}
+
 .card {
     margin-top: 20px;
+    border-radius: 5px;
 }
 
 .pComment {

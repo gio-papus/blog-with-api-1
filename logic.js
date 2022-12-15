@@ -10,6 +10,8 @@ fetch(urlPosts)
     .then(json => json.forEach(post => createCard(post)))
 
 function createCard (post) {
+
+    /* -----CARD SECTION----- */
     
     let id = post.id;
     let userId = post.userId;
@@ -45,6 +47,8 @@ function createCard (post) {
     const btnGroup = document.createElement("div");
     btnGroup.classList = "btn-group";
     dFlex.appendChild(btnGroup);
+
+    /* ----- BUTTON SECTION----- */
 
     const button = document.createElement("button");
     button.classList = "btn btn-primary";
@@ -154,6 +158,8 @@ function createCard (post) {
     btnFooter2.setAttribute("type", "button");
     btnFooter2.textContent = "Save Changes";
     editModalFooter.appendChild(btnFooter2);
+
+    /* ----- USER AND MAIL FUNCTION ----- */
     
     const username = document.createElement("div");
     username.classList ="modal-body";
@@ -174,6 +180,8 @@ function createCard (post) {
             mail.innerHTML = "<b><em> Mail </em></b>: " + user.email;
         }
     }
+
+    /* -----COMMENTS SECTIONS----- */
 
     const btnCollapse = document.createElement("button");
     btnCollapse.classList = "btn btn-dark";
@@ -214,6 +222,8 @@ function createCard (post) {
         }     
     }
 
+    /* -----DELETE SECTION----- */
+
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
     deleteBtn.classList = "btn btn-danger";
@@ -241,6 +251,8 @@ function createCard (post) {
         }, 5000);
 
     }
+
+    /* -----SAVE CHANGE SECTION----- */
 
     btnFooter2.addEventListener("click", editPost);
 
