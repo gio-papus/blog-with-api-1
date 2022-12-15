@@ -11,7 +11,7 @@ fetch(urlPosts)
 
 function createCard (post) {
 
-    /* -----CARD SECTION----- */
+    /* -----POST SECTION----- */
     
     let id = post.id;
     let userId = post.userId;
@@ -32,6 +32,7 @@ function createCard (post) {
         img.src = "./images/kimetsu10.jpg";
     }
     card.appendChild(img);
+
     const cardBody = document.createElement("div");
     cardBody.classList = "card-body";
     card.appendChild(cardBody);
@@ -40,6 +41,7 @@ function createCard (post) {
     p.classList = "card-text";
     p.textContent = post.title;
     cardBody.appendChild(p);
+
     const dFlex = document.createElement("div");
     dFlex.classList = "d-flex justify-content-md-end align-items-center ml-3";
     cardBody.appendChild(dFlex);
@@ -77,10 +79,12 @@ function createCard (post) {
     const modalHeader = document.createElement("div");
     modalHeader.classList = "modal-header";
     modalContent.appendChild(modalHeader);
+
     const modalBody = document.createElement("div");
     modalBody.classList = "modal-body";
     modalBody.textContent = post.body;
     modalContent.appendChild(modalBody);
+    
     const modalFooter = document.createElement("div");
     modalFooter.classList = "modal-footer";
     modalContent.appendChild(modalFooter);
@@ -203,14 +207,18 @@ function createCard (post) {
             createComment(comment, id)));
 
     function createComment(comment, id){
-        if (id == comment.postId){
+        if (id == comment.postId) {
+
             const cardComment = document.createElement("div");
             cardComment.classList = "card card-body";
             collapse.appendChild(cardComment);
+
             const h4Comment = document.createElement("h5");
             h4Comment.classList = "title";
+
             const pCommentBody = document.createElement("p");
             pCommentBody.classList = "pComment";
+
             const pCommentMail = document.createElement("em");
             pCommentMail.classList = "pMail";
             h4Comment.textContent = comment.name;
@@ -232,7 +240,7 @@ function createCard (post) {
 
     deleteBtn.addEventListener("click",removePost)
     
-    function removePost (){
+    function removePost () {
 
         showDelete.classList.toggle("hidden");
 
@@ -271,7 +279,7 @@ function createCard (post) {
             },
         })
             .then((response) => response.json())
-            .then((json) => location.reload())
+            .then(() => location.reload())
     }
 
 }
