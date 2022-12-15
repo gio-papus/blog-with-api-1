@@ -53,6 +53,7 @@ function createCard (post) {
     button.setAttribute("data-bs-target", "#modal" + post.id);
     button.textContent = "Load Info";
     btnGroup.appendChild(button);
+
     const modalFade = document.createElement("div");
     modalFade.classList = "modal fade";
     modalFade.setAttribute("id", "modal" + post.id);
@@ -85,6 +86,7 @@ function createCard (post) {
     h5.setAttribute("id", "modalLabel");
     h5.textContent = post.title;
     modalHeader.appendChild(h5);
+
     const btnModal = document.createElement("button");
     btnModal.classList = "btn-close";
     btnModal.setAttribute("type", "button");
@@ -94,15 +96,66 @@ function createCard (post) {
 
     const btnFooter1 = document.createElement("button");
     btnFooter1.classList = "btn btn-warning";
-    btnFooter1.textContent = "Edit"
+    btnFooter1.textContent = "Edit";
     btnFooter1.setAttribute("type", "button");
+    btnFooter1.setAttribute("data-bs-toggle", "modal");
+    btnFooter1.setAttribute("data-bs-target", "#editmodal" + post.id);
     btnFooter1.setAttribute("data-bs-dismiss", "modal");
-    modalFooter.appendChild(btnFooter1);
+    btnGroup.appendChild(btnFooter1);
+
+    const editModal = document.createElement("div");
+    editModal.classList = "modal fade";
+    editModal.setAttribute("id", "editmodal" + post.id);
+    editModal.setAttribute("tabindex", "-1");
+    editModal.setAttribute("aria-labelledby", "modalLabel");
+    editModal.setAttribute("aria-hidden", "true");
+    btnGroup.appendChild(editModal);
+
+    const editModalDialog = document.createElement("div");
+    editModalDialog.classList = "modal-dialog modal-lg";
+    editModal.appendChild(editModalDialog);
+
+    const editModalContent = document.createElement("div");
+    editModalContent.classList = "modal-content";
+    editModalDialog.appendChild(editModalContent);
+
+    const editModalHeader = document.createElement("div");
+    editModalHeader.classList = "modal-header";
+    editModalContent.appendChild(editModalHeader);
+
+
+    const editH2 = document.createElement("input");
+    editH2.classList = "modal-title";
+    editH2.setAttribute("type", "text");
+    editH2.setAttribute("id", "modalLabel");
+    editH2.setAttribute("value", post.title)
+    editModalHeader.appendChild(editH2);
+
+    const editBtnModal = document.createElement("button");
+    editBtnModal.classList = "btn-close";
+    editBtnModal.setAttribute("type", "button");
+    editBtnModal.setAttribute("data-bs-dismiss", "modal");
+    editBtnModal.setAttribute("aria-label", "Close");
+    editModalHeader.appendChild(editBtnModal);
+
+    const editModalBody = document.createElement("textarea");
+    editModalBody.setAttribute("rows", "6")
+    editModalBody.setAttribute("cols", "10")
+    editModalBody.classList = "modal-body";
+    editModalBody.textContent = post.body;
+    editModalContent.appendChild(editModalBody);
+
+    const editModalFooter = document.createElement("div");
+    editModalFooter.classList = "modal-footer";
+    editModalContent.appendChild(editModalFooter);
+
+
+
     const btnFooter2 = document.createElement("button");
     btnFooter2.classList = "btn btn-primary";
     btnFooter2.setAttribute("type", "button");
     btnFooter2.textContent = "Save Changes";
-    modalFooter.appendChild(btnFooter2);
+    editModalFooter.appendChild(btnFooter2);
     
     const username = document.createElement("div");
     username.classList ="modal-body";
