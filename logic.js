@@ -277,6 +277,7 @@ function createCard (post) {
                 fetch("http://localhost:3000/posts/" + post.id, {
                     method: 'DELETE'
                 })            
+                alert("Post Edited Successfully!")
             }, 1000); 
         }, 5000);
         }
@@ -319,10 +320,10 @@ function createCard (post) {
                             "Content-Type": "application/json",
                         },
                     })
+                    alert("Post Edited Successfully!")
                         .then((response) => response.json())
                         .then(() => location.reload())
         
-                        alert("Post Edited Successfully!")
                     }, 5000);
             }
         })
