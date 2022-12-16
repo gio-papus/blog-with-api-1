@@ -252,22 +252,36 @@ function createCard (post) {
     deleteBtn.addEventListener("click",removePost)
     
     function removePost () {
-
+        
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
         showDelete.classList.toggle("hidden");
-
+    
         setTimeout(() => {
-
+    
             showDelete.classList.toggle("hidden");
         
             let postAddFall = document.querySelector("#post" + id);
             postAddFall.classList = "col fall"; 
-
+    
             setTimeout(() => {
                 fetch("http://localhost:3000/posts/" + post.id, {
                     method: 'DELETE'
                 })            
             }, 1000); 
         }, 5000);
+        }
+      })
+
 
     }
 
@@ -277,29 +291,42 @@ function createCard (post) {
 
     function editPost(){
 
-        showSaving.classList.toggle("hidden");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, edit it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                showSaving.classList.toggle("hidden");
+        
+                setTimeout(() => {
+        
+                    showSaving.classList.toggle("hidden");
+                        
+                    fetch("http://localhost:3000/posts/" + post.id, {
+                        method: 'PUT',
+                        body: JSON.stringify({
+                            userId: userId,
+                            id: id,
+                            title: editH2.value,
+                            body: editModalBody.value,
+                        }),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    })
+                        .then((response) => response.json())
+                        .then(() => location.reload())
+        
+                        alert("Post Edited Successfully!")
+                    }, 5000);
+            }
+        })
 
-        setTimeout(() => {
-
-            showSaving.classList.toggle("hidden");
-               
-            fetch("http://localhost:3000/posts/" + post.id, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    userId: userId,
-                    id: id,
-                    title: editH2.value,
-                    body: editModalBody.value,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((response) => response.json())
-                .then(() => location.reload())
-
-                alert("Post Edited Successfully!")
-            }, 5000);
     }
 
 }
