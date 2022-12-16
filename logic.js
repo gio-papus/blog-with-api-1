@@ -4,6 +4,7 @@ const urlUsers = "http://localhost:3000/users"
 
 const cardSection = document.querySelector("#cardSection");
 const showDelete = document.querySelector(".box");
+const showSaving = document.querySelector(".save");
 
 // let userArray = [];
 
@@ -276,20 +277,29 @@ function createCard (post) {
 
     function editPost(){
 
-        fetch("http://localhost:3000/posts/" + post.id, {
-            method: 'PUT',
-            body: JSON.stringify({
-                userId: userId,
-                id: id,
-                title: editH2.value,
-                body: editModalBody.value,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then(() => location.reload())
+        showSaving.classList.toggle("hidden");
+
+        setTimeout(() => {
+
+            showSaving.classList.toggle("hidden");
+               
+            fetch("http://localhost:3000/posts/" + post.id, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    userId: userId,
+                    id: id,
+                    title: editH2.value,
+                    body: editModalBody.value,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+                .then((response) => response.json())
+                .then(() => location.reload())
+
+                alert("Post Edited Successfully!")
+            }, 5000);
     }
 
 }
