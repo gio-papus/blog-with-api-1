@@ -5,9 +5,19 @@ const urlUsers = "http://localhost:3000/users"
 const cardSection = document.querySelector("#cardSection");
 const showDelete = document.querySelector(".box");
 
+// let userArray = [];
+
 fetch(urlPosts)
     .then(response => response.json())
     .then(json => json.forEach(post => createCard(post)))
+
+// fetch(urlComments)
+//     .then(response => response.json())
+//     .then(json => json.forEach(comment => userArray.push(comment)))
+
+// console.log(userArray);
+// console.log(userArray[0]);
+// console.log(userArray.id)
 
 function createCard (post) {
 
