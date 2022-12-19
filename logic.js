@@ -6,21 +6,25 @@ const cardSection = document.querySelector("#cardSection");
 const showDelete = document.querySelector(".box");
 const showSaving = document.querySelector(".save");
 
-// let userArray = [];
+let userArray = [];
+
+
+
+
+async function fetchRandom() {
+    await fetch(urlComments)
+    .then(response => response.json())
+    .then(json => json.forEach(comment => userArray.push(comment)))
+}
 
 fetch(urlPosts)
     .then(response => response.json())
     .then(json => json.forEach(post => createCard(post)))
 
-// fetch(urlComments)
-//     .then(response => response.json())
-//     .then(json => json.forEach(comment => userArray.push(comment)))
-
-// console.log(userArray);
-// console.log(userArray[0]);
-// console.log(userArray.id)
 
 function createCard (post) {
+
+    fetchRandom();
 
     /* -----POST SECTION----- */
     
@@ -31,6 +35,8 @@ function createCard (post) {
     divCol.classList = "col";
     divCol.setAttribute("id", "post" + id);
     cardSection.appendChild(divCol);
+
+    
 
     const card = document.createElement("div");
     card.classList = "card shadow-sm";
@@ -176,25 +182,10 @@ function createCard (post) {
 
     /* ----- USER AND MAIL FUNCTION ----- */
     
-    const username = document.createElement("div");
-    username.classList ="modal-body";
-    modalBody.appendChild(username);
     
-    const mail = document.createElement("div");
-    mail.classList ="modal-body";
-    modalBody.appendChild(mail)
-    
-    fetch(urlUsers)
-        .then(response => response.json())
-        .then(json => json.forEach(user => 
-            getMailUser(userId, user)));
-    
-    function getMailUser (userId, user) {
-        if (user.id == userId){
-            username.innerHTML = "<b><em> Username </em></b>: " + user.username;
-            mail.innerHTML = "<b><em> Mail </em></b>: " + user.email;
-        }
-    }
+
+    userFetch(userId, modalBody, userId);
+
 
     /* -----COMMENTS SECTIONS----- */
 
@@ -330,4 +321,32 @@ function createCard (post) {
 
     }
 
+}
+
+
+
+function userFetch(userId, modalBody) {
+
+
+    
+    fetch(urlUsers)
+    .then(response => response.json())
+    .then(json => json.forEach(user => 
+        getMailUser(user, modalBody, userId)));
+
+}
+
+function getMailUser (user, modalBody, userId) {
+
+    const username = document.createElement("div");
+    username.classList ="modal-body";
+    modalBody.appendChild(username);
+    
+    const mail = document.createElement("div");
+    mail.classList ="modal-body";
+    modalBody.appendChild(mail);
+    if (user.id == userId){
+        username.innerHTML = "<b><em> Username </em></b>: " + user.username;
+        mail.innerHTML = "<b><em> Mail </em></b>: " + user.email;
+    }
 }
